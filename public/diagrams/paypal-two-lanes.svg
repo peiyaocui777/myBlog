@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 340" font-family="Microsoft YaHei, PingFang SC, sans-serif">
+  <text x="380" y="34" text-anchor="middle" font-size="15" fill="#1A1A1E" font-weight="bold">收款闭环的两道防线，汇入同一份落权代码</text>
+  <!-- PayPal -->
+  <rect x="20" y="140" width="130" height="64" rx="6" fill="none" stroke="#1A1A1E" stroke-width="1.5"/>
+  <text x="85" y="168" text-anchor="middle" font-size="15" fill="#1A1A1E" font-weight="bold">PayPal</text>
+  <text x="85" y="190" text-anchor="middle" font-size="11.5" fill="#6E6E78">真实状态的唯一出处</text>
+  <!-- 快道 -->
+  <rect x="230" y="66" width="240" height="70" rx="6" fill="none" stroke="#B4532A" stroke-width="1.5"/>
+  <text x="350" y="92" text-anchor="middle" font-size="14" fill="#B4532A" font-weight="bold">Webhook 快道</text>
+  <text x="350" y="114" text-anchor="middle" font-size="11.5" fill="#6E6E78">秒级 · 会丢、会重 → 验签 + 7 天幂等去重</text>
+  <!-- 慢道 -->
+  <rect x="230" y="206" width="240" height="70" rx="6" fill="none" stroke="#1A1A1E" stroke-width="1.5"/>
+  <text x="350" y="232" text-anchor="middle" font-size="14" fill="#1A1A1E" font-weight="bold">对账慢道 · 每 15 分钟</text>
+  <text x="350" y="254" text-anchor="middle" font-size="11.5" fill="#6E6E78">查 Orders API · 查不到不臆断，等下一轮</text>
+  <!-- 落权 -->
+  <rect x="550" y="140" width="190" height="64" rx="6" fill="none" stroke="#1A1A1E" stroke-width="1.5"/>
+  <text x="645" y="166" text-anchor="middle" font-size="14" fill="#1A1A1E" font-weight="bold">落权（同一份代码）</text>
+  <text x="645" y="188" text-anchor="middle" font-size="11.5" fill="#6E6E78">谁先到谁生效，后来的做幂等</text>
+  <!-- 连线 -->
+  <path d="M150 160 C 190 130, 200 105, 230 101" fill="none" stroke="#B4532A" stroke-width="1.5"/>
+  <path d="M230 101 l-9 -2 4 8 z" fill="#B4532A"/>
+  <path d="M150 184 C 190 214, 200 238, 230 241" fill="none" stroke="#1A1A1E" stroke-width="1.5"/>
+  <path d="M230 241 l-9 1 5 7 z" fill="#1A1A1E"/>
+  <line x1="470" y1="101" x2="550" y2="152" stroke="#B4532A" stroke-width="1.5"/>
+  <path d="M550 152 l-9 -3 4 8 z" fill="#B4532A"/>
+  <line x1="470" y1="241" x2="550" y2="192" stroke="#1A1A1E" stroke-width="1.5"/>
+  <path d="M550 192 l-9 3 4 -8 z" fill="#1A1A1E"/>
+  <!-- 底注 -->
+  <text x="380" y="316" text-anchor="middle" font-size="12.5" fill="#6E6E78">快道管体验，慢道管正确性；两条路落权逻辑共用，行为不会分叉</text>
+</svg>

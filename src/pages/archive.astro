@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const byYear = new Map();
+for (const p of posts) {
+  const y = p.data.pubDate.getFullYear();
+  if (!byYear.has(y)) byYear.set(y, []);
+  byYear.get(y).push(p);
+}
+const years = [...byYear.keys()].sort((a, b) => b - a);
+---
+<BaseLayout title="归档">
+  <section class="archive">
+    <h1>归档</h1>
+    <p class="sub">共 {posts.length} 篇</p>
+    {years.map((y) => (
+      <div>
+        <h2 class="year">{y}</h2>
+        {byYear.get(y).map((p) => (
+          <div class="arc-item">
+            <time>{p.data.pubDate.toISOString().slice(0, 10)}</time>
+            <a href={`/posts/${p.id.replace(/\.md$/, '')}/`}>{p.data.title}</a>
+          </div>
+        ))}
+      </div>
+    ))}
+    {posts.length === 0 && <p class="empty-note">还没有文章。</p>}
+  </section>
+</BaseLayout>

@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = (await getCollection('blog', ({ data }) => !data.draft));
+  return posts.map((entry) => ({
+    params: { id: entry.id.replace(/\.md$/, '') },
+    props: { entry },
+  }));
+}
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const readMin = Math.max(1, Math.round((entry.body?.length || 0) / 450));
+---
+<BaseLayout title={entry.data.title} description={entry.data.description}>
+  <article>
+    <div class="post-head">
+      <p class="post-meta">
+        <time datetime={entry.data.pubDate.toISOString().slice(0, 10)}>
+          {entry.data.pubDate.toISOString().slice(0, 10)}
+        </time>
+        <span class="sep">|</span>
+        <span>约 {readMin} 分钟</span>
+        {entry.data.tags && entry.data.tags.length > 0 && (
+          <span class="sep">|</span>
+        )}
+        {entry.data.tags && entry.data.tags.join(' / ')}
+      </p>
+      <h1>{entry.data.title}</h1>
+      <p class="post-desc">{entry.data.description}</p>
+    </div>
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+  <a class="back" href="/">← 返回列表</a>
+</BaseLayout>

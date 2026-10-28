@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+<BaseLayout title="">
+  <section class="intro">
+    <h1>aria 的博客</h1>
+    <p>写后端和 AI 应用工程里值得复盘的事——任务队列、并发缺陷、Agent 架构、支付链路。都来自我做过的生产项目。</p>
+  </section>
+
+  {posts.length === 0 && <p class="empty-note">文章在路上。订阅 <a href="/rss.xml">RSS</a>，第一篇发布时你会知道。</p>}
+
+  <ul class="post-list">
+    {posts.map((post) => (
+      <li class="post-item">
+        <time datetime={post.data.pubDate.toISOString().slice(0, 10)}>
+          {post.data.pubDate.toISOString().slice(0, 10)}
+        </time>
+        <span class="rt">约 {Math.max(1, Math.round((post.body?.length || 0) / 450))} 分钟</span>
+        <h2><a href={`/posts/${post.id.replace(/\.md$/, '')}/`}>{post.data.title}</a></h2>
+        <p class="desc">{post.data.description}</p>
+        {post.data.tags && (
+          <div class="tags">
+            {post.data.tags.map((t) => <span>{t}</span>)}
+          </div>
+        )}
+      </li>
+    ))}
+  </ul>
+</BaseLayout>

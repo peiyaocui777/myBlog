@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 320" font-family="Microsoft YaHei, PingFang SC, sans-serif">
+  <rect x="0" y="0" width="760" height="320" fill="none"/>
+  <!-- 云端 -->
+  <rect x="30" y="120" width="200" height="86" rx="6" fill="none" stroke="#1A1A1E" stroke-width="1.5"/>
+  <text x="130" y="150" text-anchor="middle" font-size="15" fill="#1A1A1E" font-weight="bold">云端 PostgreSQL</text>
+  <text x="130" y="176" text-anchor="middle" font-size="12.5" fill="#6E6E78">收件人表 · status=queued</text>
+  <text x="130" y="194" text-anchor="middle" font-size="12.5" fill="#B4532A">队列即表</text>
+  <!-- Agent -->
+  <rect x="300" y="120" width="180" height="86" rx="6" fill="none" stroke="#1A1A1E" stroke-width="1.5"/>
+  <text x="390" y="150" text-anchor="middle" font-size="15" fill="#1A1A1E" font-weight="bold">Mail Agent</text>
+  <text x="390" y="176" text-anchor="middle" font-size="12.5" fill="#6E6E78">客户本机 · 心跳 60s</text>
+  <text x="390" y="194" text-anchor="middle" font-size="12.5" fill="#B4532A">sending 不自动回收</text>
+  <!-- 收件人 -->
+  <rect x="560" y="120" width="170" height="86" rx="6" fill="none" stroke="#1A1A1E" stroke-width="1.5"/>
+  <text x="645" y="150" text-anchor="middle" font-size="15" fill="#1A1A1E" font-weight="bold">收件人邮箱</text>
+  <text x="645" y="176" text-anchor="middle" font-size="12.5" fill="#6E6E78">业务员本人发件</text>
+  <text x="645" y="194" text-anchor="middle" font-size="12.5" fill="#6E6E78">不像群发</text>
+  <!-- 拉取 -->
+  <line x1="230" y1="146" x2="300" y2="146" stroke="#B4532A" stroke-width="1.5"/>
+  <path d="M300 146 l-8 -4 v8 z" fill="#B4532A"/>
+  <text x="265" y="132" text-anchor="middle" font-size="12" fill="#B4532A">拉取（行锁）</text>
+  <!-- 发送 -->
+  <line x1="480" y1="146" x2="560" y2="146" stroke="#B4532A" stroke-width="1.5"/>
+  <path d="M560 146 l-8 -4 v8 z" fill="#B4532A"/>
+  <text x="520" y="132" text-anchor="middle" font-size="12" fill="#B4532A">本机 SMTP</text>
+  <!-- 回传 -->
+  <path d="M390 206 L390 250 L130 250 L130 206" fill="none" stroke="#6E6E78" stroke-width="1.5" stroke-dasharray="5 4"/>
+  <path d="M130 206 l-4 8 h8 z" fill="#6E6E78"/>
+  <text x="260" y="242" text-anchor="middle" font-size="12" fill="#6E6E78">结果回传 · client_msg_id 幂等去重</text>
+  <!-- 标题 -->
+  <text x="380" y="40" text-anchor="middle" font-size="15" fill="#1A1A1E" font-weight="bold">邮件发送队列：数据库为队首，Agent 为消费者</text>
+  <text x="380" y="64" text-anchor="middle" font-size="12.5" fill="#9B9BA4">领取侧幂等（行锁保证只被一个 Agent 拿走）· 执行侧保守（卡住转人工）</text>
+</svg>

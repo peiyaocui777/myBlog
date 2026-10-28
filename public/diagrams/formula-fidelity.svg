@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 280" font-family="Microsoft YaHei, PingFang SC, sans-serif">
+  <text x="380" y="34" text-anchor="middle" font-size="15" fill="#1A1A1E" font-weight="bold">同一个分式，两种喂法</text>
+  <!-- 原文 -->
+  <rect x="40" y="90" width="180" height="130" rx="6" fill="none" stroke="#1A1A1E" stroke-width="1.5"/>
+  <text x="130" y="118" text-anchor="middle" font-size="13" fill="#6E6E78">Word 里的 OMML 分式</text>
+  <text x="130" y="155" text-anchor="middle" font-size="17" fill="#1A1A1E" font-style="italic">a</text>
+  <line x1="106" y1="164" x2="154" y2="164" stroke="#1A1A1E" stroke-width="1.5"/>
+  <text x="130" y="188" text-anchor="middle" font-size="17" fill="#1A1A1E" font-style="italic">b</text>
+  <!-- 拍平 -->
+  <rect x="290" y="90" width="180" height="130" rx="6" fill="none" stroke="#B4532A" stroke-width="1.5"/>
+  <text x="380" y="118" text-anchor="middle" font-size="13" fill="#6E6E78">按文档顺序拍平拼接</text>
+  <text x="380" y="158" text-anchor="middle" font-size="17" fill="#1A1A1E" font-style="italic">ab</text>
+  <text x="380" y="196" text-anchor="middle" font-size="12.5" fill="#B4532A">✗ 模型判"公式表达混乱"，误扣分</text>
+  <!-- 结构渲染 -->
+  <rect x="540" y="90" width="180" height="130" rx="6" fill="none" stroke="#1A1A1E" stroke-width="1.5"/>
+  <text x="630" y="118" text-anchor="middle" font-size="13" fill="#6E6E78">结构感知渲染</text>
+  <text x="630" y="158" text-anchor="middle" font-size="17" fill="#1A1A1E" font-style="italic">(a)/(b)</text>
+  <text x="630" y="196" text-anchor="middle" font-size="12.5" fill="#3A7D44">✓ 结构保留，模型按原文评分</text>
+  <!-- 箭头 -->
+  <line x1="220" y1="155" x2="290" y2="155" stroke="#1A1A1E" stroke-width="1.5"/>
+  <path d="M290 155 l-8 -4 v8 z" fill="#1A1A1E"/>
+  <line x1="470" y1="155" x2="540" y2="155" stroke="#1A1A1E" stroke-width="1.5"/>
+  <path d="M540 155 l-8 -4 v8 z" fill="#1A1A1E"/>
+  <text x="255" y="142" text-anchor="middle" font-size="11" fill="#9B9BA4">m:t</text>
+  <text x="505" y="142" text-anchor="middle" font-size="11" fill="#9B9BA4">递归</text>
+  <!-- 底注 -->
+  <text x="380" y="256" text-anchor="middle" font-size="12.5" fill="#6E6E78">学生写对了、模型批错了——问题不在模型，在喂给它的东西</text>
+</svg>
