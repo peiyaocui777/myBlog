@@ -1,0 +1,38 @@
+name: post-notify
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Find new posts
+        id: posts
+        run: |
+          # 找出本次 push 新增/修改的文章（跳过 drafts）
+          files=$(git diff --name-only --diff-filter=ACM HEAD~1 HEAD -- 'src/content/blog/*.md' | grep -v 'drafts/' || true)
+          echo "files<<EOF" >> "$GITHUB_OUTPUT"
+          echo "$files" >> "$GITHUB_OUTPUT"
+          echo "EOF" >> "$GITHUB_OUTPUT"
+
+      - name: Post to X / Telegram
+        if: steps.posts.outputs.files != ''
+        env:
+          X_API_KEY: ${{ secrets.X_API_KEY }}
+          X_API_SECRET: ${{ secrets.X_API_SECRET }}
+          X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
+          X_ACCESS_SECRET: ${{ secrets.X_ACCESS_SECRET }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          for f in ${{ steps.posts.outputs.files }}; do
+            slug=$(basename "$f" .md)
+            echo ">>> 通知新文章: $slug"
+            node scripts/post-to-x.mjs "$slug"
+          done
