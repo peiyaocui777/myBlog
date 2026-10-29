@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 380" font-family="Microsoft YaHei, PingFang SC, sans-serif">
+  <text x="380" y="32" text-anchor="middle" font-size="15" fill="#1A1A1E" font-weight="bold">备课 Agent 的分层：每一层都能回答一道面试题</text>
+
+  <!-- 教师 -->
+  <rect x="24" y="140" width="120" height="70" rx="6" fill="none" stroke="#1A1A1E" stroke-width="1.5"/>
+  <text x="84" y="170" text-anchor="middle" font-size="14" fill="#1A1A1E" font-weight="bold">教师</text>
+  <text x="84" y="192" text-anchor="middle" font-size="11.5" fill="#6E6E78">聊天 / 确认卡片</text>
+
+  <!-- 主 Agent -->
+  <rect x="200" y="90" width="200" height="170" rx="6" fill="none" stroke="#B4532A" stroke-width="1.5"/>
+  <text x="300" y="116" text-anchor="middle" font-size="14" fill="#B4532A" font-weight="bold">主 Agent 会话</text>
+  <text x="300" y="142" text-anchor="middle" font-size="11.5" fill="#1A1A1E">快档 / 慢档双模型路由</text>
+  <text x="300" y="166" text-anchor="middle" font-size="11.5" fill="#1A1A1E">上下文双层管理：剪枝 + 主动压缩</text>
+  <text x="300" y="190" text-anchor="middle" font-size="11.5" fill="#1A1A1E">会话实例 LRU 淘汰，可从 PG 重建</text>
+  <text x="300" y="218" text-anchor="middle" font-size="11" fill="#6E6E78">写操作边界：request_* 只弹卡片</text>
+  <text x="300" y="238" text-anchor="middle" font-size="11" fill="#6E6E78">正式保存必须教师点击</text>
+
+  <!-- Skills -->
+  <rect x="460" y="70" width="140" height="110" rx="6" fill="none" stroke="#1A1A1E" stroke-width="1.5"/>
+  <text x="530" y="94" text-anchor="middle" font-size="13" fill="#1A1A1E" font-weight="bold">五项 Skill</text>
+  <text x="530" y="116" text-anchor="middle" font-size="10.5" fill="#6E6E78">资料检索 · 知识点</text>
+  <text x="530" y="133" text-anchor="middle" font-size="10.5" fill="#6E6E78">出题 · 原题导入 · 草稿编辑</text>
+  <text x="530" y="156" text-anchor="middle" font-size="10.5" fill="#6E6E78">references 按需延迟读取</text>
+
+  <!-- Worker -->
+  <rect x="460" y="210" width="140" height="90" rx="6" fill="none" stroke="#1A1A1E" stroke-width="1.5"/>
+  <text x="530" y="236" text-anchor="middle" font-size="13" fill="#1A1A1E" font-weight="bold">Worker</text>
+  <text x="530" y="258" text-anchor="middle" font-size="10.5" fill="#6E6E78">PG 队列领取 + 租约</text>
+  <text x="530" y="275" text-anchor="middle" font-size="10.5" fill="#6E6E78">多账号 key 池分片</text>
+  <text x="530" y="292" text-anchor="middle" font-size="10.5" fill="#6E6E78">版本指纹防漂移</text>
+
+  <!-- 正式库 -->
+  <rect x="650" y="140" width="90" height="70" rx="6" fill="none" stroke="#3A7D44" stroke-width="1.5"/>
+  <text x="695" y="170" text-anchor="middle" font-size="13" fill="#3A7D44" font-weight="bold">正式库</text>
+  <text x="695" y="192" text-anchor="middle" font-size="10.5" fill="#6E6E78">模型无权直写</text>
+
+  <!-- 连线 -->
+  <line x1="144" y1="165" x2="200" y2="165" stroke="#B4532A" stroke-width="1.5"/>
+  <path d="M200 165 l-8 -4 v8 z" fill="#B4532A"/>
+  <line x1="300" y1="260" x2="300" y2="320" stroke="#6E6E78" stroke-width="1.5" stroke-dasharray="5 4"/>
+  <line x1="300" y1="320" x2="650" y2="320" stroke="#6E6E78" stroke-width="1.5" stroke-dasharray="5 4"/>
+  <line x1="695" y1="320" x2="695" y2="210" stroke="#6E6E78" stroke-width="1.5" stroke-dasharray="5 4"/>
+  <path d="M695 210 l-4 8 h8 z" fill="#6E6E78"/>
+  <text x="470" y="312" text-anchor="middle" font-size="10.5" fill="#6E6E78">类型化草稿 → 教师确认卡片 → 唯一写入通道</text>
+  <line x1="400" y1="140" x2="460" y2="120" stroke="#1A1A1E" stroke-width="1.5"/>
+  <path d="M460 120 l-9 -1 5 7 z" fill="#1A1A1E"/>
+  <line x1="400" y1="220" x2="460" y2="248" stroke="#1A1A1E" stroke-width="1.5"/>
+  <path d="M460 248 l-9 -3 4 8 z" fill="#1A1A1E"/>
+  <line x1="600" y1="255" x2="650" y2="190" stroke="#1A1A1E" stroke-width="1.5" stroke-dasharray="2 3"/>
+</svg>
