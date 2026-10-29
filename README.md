@@ -1,34 +1,36 @@
 # aria 的博客（blog.vorluna.top）
 
-基于 Astro 的静态博客。写作 → 构建 → 部署，全程免费。
+基于 Astro 的静态博客。仓库：https://github.com/peiyaocui777/myBlog
 
-## 日常写作流程
+## 日常写作流程（git 自动部署版）
 
-1. 在 `src/content/blog/` 新建 `文章名.md`（文件名即 URL，用英文短横线，如 `pg-task-queue.md` → `/posts/pg-task-queue/`）；
-2. 文件头部 front matter：
+1. 在 `src/content/blog/` 新建 `文章名.md`（文件名即 URL，英文短横线）；
+2. front matter 模板：
 
 ```yaml
 ---
 title: '文章标题'
-description: '一句话摘要，会显示在列表和 RSS 里'
+description: '一句话摘要'
 pubDate: 2026-11-01
-tags: ['PostgreSQL', '架构']   # 可选
-draft: true                     # 写完删掉这行才发布
+tags: ['标签1', '标签2']
+draft: true    # 写完删掉这行才发布
 ---
 ```
 
-3. 正文 Markdown，代码块用 \`\`\` 围栏（自动语法高亮）；
-4. 本地预览：`npm run dev` → http://localhost:4321；
-5. 发布三步：
-   - 删掉 `draft: true`
-   - `npm run build`（产物在 `dist/`）
-   - Cloudflare 控制台 → vorluna-blog 项目 → Create deployment → 拖入 `dist` 文件夹
+3. 本地预览：`npm run dev` → http://localhost:4321；
+4. 发布三连：
 
-## 首次部署（还没做过时）
+```bash
+git add -A
+git commit -m "发布：文章标题"
+git push
+```
 
-1. Cloudflare 控制台 → Workers & Pages → Create → Pages → Upload assets；
-2. 项目名填 `vorluna-blog` → 拖入 `dist` 文件夹 → Deploy；
-3. 项目 → Domains → Add domain → `blog.vorluna.top`（自动配记录，几分钟生效）。
+Cloudflare 检测到 push 会自动构建并上线（前提：Workers & Pages 已 Connect to Git 连上本仓库）。
+
+## 手动部署（备用，git 未接通时）
+
+`npm run build` 后把 `blog\dist` 文件夹拖到 Cloudflare 控制台 vorluna-blog 项目的 Create deployment。
 
 ## 目录结构
 
@@ -38,12 +40,12 @@ blog/
 │   ├── content/blog/     ← 文章都放这里（Markdown）
 │   ├── layouts/          ← 全站模板（设计在 BaseLayout.astro 的 <style> 里）
 │   └── pages/            ← 首页/归档/关于/RSS
-├── public/               ← 静态资源（favicon 等；文章配图也放这里，引用 /xxx.png）
+├── public/               ← 静态资源（favicon、diagrams/ 示意图）
 └── astro.config.mjs      ← 站点配置（域名、代码高亮主题）
 ```
 
 ## 待办
 
-- [ ] 首篇文章 `pg-task-queue.md` 目前是 draft 骨架，填完【待补】内容后删除 draft 行发布
+- [ ] 首篇之前的旧待办已完成；现有 7 篇全部发布
+- [ ] Cloudflare Connect to Git 连接本仓库后，删除此节的"手动部署"说明
 - [ ] 关于页里的 aria@vorluna.top 邮箱：Email Routing 开通后删掉 Gmail 兜底那行
-- [ ] 主页（vorluna.top）HUD 导航已有 BLOG 入口，上线后确认链接可用
