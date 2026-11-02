@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 300" font-family="Georgia, 'Songti SC', serif">
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#B4532A"/>
+    </marker>
+  </defs>
+  <rect width="760" height="300" fill="#FAFAF7"/>
+  <text x="30" y="42" font-size="19" fill="#1B1B19">从一段猫视频到网页里的循环动画</text>
+
+  <rect x="30" y="70" width="120" height="58" rx="6" fill="none" stroke="#1B1B19" stroke-width="1.4"/>
+  <text x="90" y="95" font-size="14" text-anchor="middle" fill="#1B1B19">动作视频</text>
+  <text x="90" y="114" font-size="11" text-anchor="middle" fill="#6B6B66">4~8 秒 / 24fps</text>
+
+  <rect x="195" y="70" width="120" height="58" rx="6" fill="none" stroke="#1B1B19" stroke-width="1.4"/>
+  <text x="255" y="95" font-size="14" text-anchor="middle" fill="#1B1B19">循环窗口检测</text>
+  <text x="255" y="114" font-size="11" text-anchor="middle" fill="#6B6B66">首尾最像的一段</text>
+
+  <rect x="360" y="70" width="120" height="58" rx="6" fill="none" stroke="#1B1B19" stroke-width="1.4"/>
+  <text x="420" y="95" font-size="14" text-anchor="middle" fill="#1B1B19">抠图清底</text>
+  <text x="420" y="114" font-size="11" text-anchor="middle" fill="#6B6B66">阈值+闭运算+腐蚀</text>
+
+  <rect x="525" y="70" width="120" height="58" rx="6" fill="none" stroke="#1B1B19" stroke-width="1.4"/>
+  <text x="585" y="95" font-size="14" text-anchor="middle" fill="#1B1B19">等宽精灵图</text>
+  <text x="585" y="114" font-size="11" text-anchor="middle" fill="#6B6B66">统一缩放+底对齐</text>
+
+  <line x1="150" y1="99" x2="193" y2="99" stroke="#B4532A" stroke-width="1.4" marker-end="url(#ar)"/>
+  <line x1="315" y1="99" x2="358" y2="99" stroke="#B4532A" stroke-width="1.4" marker-end="url(#ar)"/>
+  <line x1="480" y1="99" x2="523" y2="99" stroke="#B4532A" stroke-width="1.4" marker-end="url(#ar)"/>
+
+  <line x1="585" y1="128" x2="585" y2="170" stroke="#B4532A" stroke-width="1.4" marker-end="url(#ar)"/>
+
+  <rect x="360" y="173" width="285" height="58" rx="6" fill="none" stroke="#B4532A" stroke-width="1.6"/>
+  <text x="502" y="198" font-size="14" text-anchor="middle" fill="#B4532A">CSS steps() 逐格播放</text>
+  <text x="502" y="217" font-size="11" text-anchor="middle" fill="#6B6B66">background-position 跳格子，零逐帧渲染</text>
+
+  <text x="30" y="173" font-size="13" fill="#1B1B19">同一环节的两个死法：</text>
+  <text x="30" y="196" font-size="12" fill="#6B6B66">阈值 200：暗色的后腿整片消失</text>
+  <text x="30" y="216" font-size="12" fill="#6B6B66">阈值 110 + 补洞：腿间空隙被填成滑板</text>
+
+  <text x="30" y="262" font-size="12" fill="#6B6B66">页面侧只做三件事：状态机决定播哪段，文档坐标系决定它站在哪，40° 滞回决定朝向几时换。</text>
+</svg>
